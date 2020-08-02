@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "632486101292",
+    "firebase_url": "https://salaho-dev.firebaseio.com",
+    "project_id": "salaho-dev",
+    "storage_bucket": "salaho-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632486101292:android:6a6cfdfc18ddd5e92b2c89",
+        "android_client_info": {
+          "package_name": "com.devengers.salaho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632486101292-30nhksqdjfe1mi9mcp3i53ahq5ckk97m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Rt9jqpXUQg8RJ48uwDf0ea3M7VeCrNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632486101292-30nhksqdjfe1mi9mcp3i53ahq5ckk97m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
