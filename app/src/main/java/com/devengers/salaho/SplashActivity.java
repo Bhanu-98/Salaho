@@ -1,14 +1,11 @@
 package com.devengers.salaho;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 
-public class SplashScreenActivity extends Activity {
+public class SplashActivity extends Activity {
 
     Handler handler;
     @Override
@@ -20,9 +17,9 @@ public class SplashScreenActivity extends Activity {
 
             @Override
             public void run() {
-                Intent intent=new Intent(SplashScreenActivity.this,MainActivity.class);
-                SplashScreenActivity.this.startActivity(intent);
-                SplashScreenActivity.this.finish();
+                Intent intent=new Intent(SplashActivity.this,MainActivity.class);
+                SplashActivity.this.startActivity(intent);
+                SplashActivity.this.finish();
             }
         },3000);
 
