@@ -42,15 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_add_friend, R.id.nav_join_group)
                 .setDrawerLayout(drawer)
                 .build();
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        if(prefs.getBoolean("isLogin",false))
-        {
-            Log.d("isLoggedin","Logged in");
-        }
-        else
-        {
-            Log.d("isLoggedin","Not Logged in");
-        }
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);

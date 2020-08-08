@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.DocumentReference;
 
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +23,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import com.devengers.salaho.UserDetailsRepository;
 
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class LoginFragment extends Fragment {
@@ -35,6 +34,7 @@ public class LoginFragment extends Fragment {
 
     EditText num,password;
     String pass,phone;
+    SharedPreferencesConfiguration prefs;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -50,6 +50,13 @@ public class LoginFragment extends Fragment {
         num= (EditText) view.findViewById(R.id.login_phone);
         password=(EditText) view.findViewById(R.id.login_password);
         userDetailsRepository = new UserDetailsRepository(getContext());
+        prefs = new SharedPreferencesConfiguration(getContext());
+        Log.d("isLoggedin",String.valueOf(prefs.readLoginStatus()));
+        if(prefs.readLoginStatus())
+        {
+            NavHostFragment.findNavController(LoginFragment.this)
+                    .navigate(R.id.action_login_to_nav_home);
+        }
 
         view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +64,7 @@ public class LoginFragment extends Fragment {
                 phone=num.getText().toString();
                 if(!TextUtils.isEmpty(num.getText())) {
                      pass = password.getText().toString();
+
 
                      userDetailsRepository.checkUser(phone).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                          @Override
@@ -74,10 +82,8 @@ public class LoginFragment extends Fragment {
                                              Log.d("check",loginModel.getPass());
                                              if(pass.equals(loginModel.getPass()))
                                              {
-                                                 SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-                                                 prefs.edit().putBoolean("isLogin",true);
-                                                 prefs.edit().apply();
-
+                                                 prefs.writeLoginStatus(true);
+                                                 Log.d("isLoggedin",String.valueOf(prefs.readLoginStatus()));
 
                                                  NavHostFragment.findNavController(LoginFragment.this)
                                                          .navigate(R.id.action_login_to_nav_home);
