@@ -1,6 +1,7 @@
 package com.devengers.salaho;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,15 +18,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferencesConfiguration prefs;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -55,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home:
                     case R.id.nav_join_group:
                     case R.id.nav_logout:
+                        prefs=new SharedPreferencesConfiguration(getApplicationContext());
+                        prefs.writeLoginStatus(false);
+                        finishAffinity();
+                        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("Logout","Logged Out Sucessfully");
+                        startActivity(intent);
+
+//                        NavController navController = Navigation.findNavController(this, R.id.action_nav_home_to_login);
+
                 }
                 return false;
             }
