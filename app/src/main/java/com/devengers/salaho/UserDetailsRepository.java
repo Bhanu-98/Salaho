@@ -24,33 +24,30 @@ public class UserDetailsRepository extends BaseFirestoreRepository {
         super(context);
     }
 
-    public Task<DocumentSnapshot> getUserDetails(String mobile)
-    {
-        return  userRef.document(mobile).get();
-    }
-
-    public Task<DocumentSnapshot> checkUser(String mobile){
+    public Task<DocumentSnapshot> getUserDetails(String mobile) {
         return userRef.document(mobile).get();
     }
-    public Task<Void> setUserDetails(UserModel user)
-    {
-        DocumentReference userDetails=userRef.document(user.getMobile());
-        return userDetails.update(user.getMobile(),user);
+
+    public Task<DocumentSnapshot> checkUser(String mobile) {
+        return userRef.document(mobile).get();
     }
-    public Task<Void> setUser(String mobile) {
-//        DocumentReference userCreate = userRef.document(mobile);
-        final DocumentReference neUser = userRef.document(mobile);
+
+    public Task<Void> registerUserDetails(UserModel user) {
+        DocumentReference userDetails = userRef.document(user.getMobile());
+        return userDetails.update(user.getMobile(), user);
+    }
+
+
+    public Task<Void> createUser(String mobile) {
+        final DocumentReference newUser = userRef.document(mobile);
         final UserModel userModel = new UserModel();
-        userModel.setFullname("Bhanu");
-        userModel.setMobile(mobile);
-        mFirestore.runTransaction(new Transaction.Function<Void>() {
+        return mFirestore.runTransaction(new Transaction.Function<Void>() {
             @Nullable
             @Override
             public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-                transaction.set(neUser, userModel);
+                transaction.set(newUser, userModel);
                 return null;
             }
         });
-        return null;
     }
 }
