@@ -76,7 +76,7 @@
             android:inputType="textEmailAddress" />
 
         <Button
-            android:id="@+id/Register_btn"
+            android:id="@+id/Register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110dp"

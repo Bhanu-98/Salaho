@@ -26,17 +26,17 @@
         card_view:cardElevation="8dp">
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/register_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="60dp"
             android:ems="10"
             android:hint="Enter Phone Number"
-            android:inputType="text" />
+            android:inputType="numberDecimal" />
 
         <Button
-            android:id="@+id/Register_btn"
+            android:id="@+id/num_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="75dp"

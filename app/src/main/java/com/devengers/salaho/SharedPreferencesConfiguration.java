@@ -25,4 +25,15 @@ public class SharedPreferencesConfiguration {
         return status;
     }
 
+    public void writeMobileNumber(String mobile)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(context.getResources().getString(R.string.mobile_number),mobile);
+    }
+    public String readMobileNumber()
+    {
+        String mobile=sharedPreferences.getString(context.getResources().getString(R.string.mobile_number),"");
+        return mobile;
+    }
+
 }

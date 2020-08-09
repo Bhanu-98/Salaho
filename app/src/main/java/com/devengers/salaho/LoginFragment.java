@@ -64,6 +64,13 @@ public class LoginFragment extends Fragment {
                 UserAuthentication();
             }
         });
+        view.findViewById(R.id.register_link).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(LoginFragment.this)
+                        .navigate(R.id.action_login_to_signup);
+            }
+        });
 
         return view;
     }
@@ -85,7 +92,7 @@ public class LoginFragment extends Fragment {
                             userDetailsRepository.getUserDetails(phone).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    LoginModel loginModel=documentSnapshot.toObject(LoginModel.class);
+                                    UserModel loginModel=documentSnapshot.toObject(UserModel.class);
                                     Log.d("check",pass);
                                     Log.d("check",loginModel.getPass());
                                     if(pass.equals(loginModel.getPass()))
