@@ -61,68 +61,73 @@ public class LoginFragment extends Fragment {
         view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                phone=num.getText().toString();
-                if(!TextUtils.isEmpty(num.getText())) {
-                     pass = password.getText().toString();
-
-
-                     userDetailsRepository.checkUser(phone).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                         @Override
-                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                             if(task.isSuccessful())
-                             {
-                                 DocumentSnapshot document=task.getResult();
-                                 if(document.exists())
-                                 {
-                                     userDetailsRepository.getUserDetails(phone).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                         @Override
-                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                             LoginModel loginModel=documentSnapshot.toObject(LoginModel.class);
-                                             Log.d("check",pass);
-                                             Log.d("check",loginModel.getPass());
-                                             if(pass.equals(loginModel.getPass()))
-                                             {
-                                                 prefs.writeLoginStatus(true);
-                                                 Log.d("isLoggedin",String.valueOf(prefs.readLoginStatus()));
-
-                                                 NavHostFragment.findNavController(LoginFragment.this)
-                                                         .navigate(R.id.action_login_to_nav_home);
-                                             }
-                                             else {
-                                                 password.setError("In correct password");
-//                                                 NavHostFragment.findNavController(LoginFragment.this)
-//                                                         .navigate(R.id.action_login_self);
-                                             }
-
-                                             Log.d("password", loginModel != null ? loginModel.getPass() : "null");
-
-                                         }
-                                     }).addOnFailureListener(new OnFailureListener() {
-                                         @Override
-                                         public void onFailure(@NonNull Exception e) {
-                                             Log.d("failed",e.toString());
-                                         }
-                                     });
-                                 }
-                                 else
-                                 {
-                                     Log.d("error","user does not exist");
-                                 }
-                             }
-                         }
-                     });
-
-
-
-                }
-                else{
-                    num.setError("Phone num is required");
-                    Log.d("error","wrong num");
-
-                }
+                UserAuthentication();
             }
         });
 
         return view;
+    }
+    private void UserAuthentication()
+    {
+        phone=num.getText().toString();
+        if(!TextUtils.isEmpty(num.getText())) {
+            pass = password.getText().toString();
+
+
+            userDetailsRepository.checkUser(phone).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful())
+                    {
+                        DocumentSnapshot document=task.getResult();
+                        if(document.exists())
+                        {
+                            userDetailsRepository.getUserDetails(phone).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    LoginModel loginModel=documentSnapshot.toObject(LoginModel.class);
+                                    Log.d("check",pass);
+                                    Log.d("check",loginModel.getPass());
+                                    if(pass.equals(loginModel.getPass()))
+                                    {
+                                        prefs.writeLoginStatus(true);
+                                        Log.d("isLoggedin",String.valueOf(prefs.readLoginStatus()));
+
+                                        NavHostFragment.findNavController(LoginFragment.this)
+                                                .navigate(R.id.action_login_to_nav_home);
+                                    }
+                                    else {
+                                        password.setError("In correct password");
+//                                                 NavHostFragment.findNavController(LoginFragment.this)
+//                                                         .navigate(R.id.action_login_self);
+                                    }
+
+                                    Log.d("password", loginModel != null ? loginModel.getPass() : "null");
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("failed",e.toString());
+                                }
+                            });
+                        }
+                        else
+                        {
+                            Log.d("error","user does not exist");
+                            num.setError("User doesn't exist please register first");
+                        }
+                    }
+                }
+            });
+
+
+
+        }
+        else{
+            num.setError("Phone num is required");
+            Log.d("error","wrong num");
+
+        }
     }
 }
