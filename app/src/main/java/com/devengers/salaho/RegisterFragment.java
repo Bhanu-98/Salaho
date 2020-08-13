@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class RegisterFragment extends Fragment {
 
     EditText uname,pass,cpass,email,fname;
+    Utils utils;
 
     UserDetailsRepository userDetailsRepository;
 
@@ -44,10 +45,12 @@ public class RegisterFragment extends Fragment {
         final Bundle bundle = getArguments();
         mobilefromOTP= bundle.getString("mobile");
         userDetailsRepository = new UserDetailsRepository(getContext());
+        utils=new Utils();
 
         view.findViewById(R.id.Register_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                utils.hideKeyboard(getActivity());
                 RegisterUserDetails(mobilefromOTP);
             }
         });
