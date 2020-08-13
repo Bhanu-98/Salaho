@@ -63,19 +63,11 @@ public class OTPFragment extends Fragment {
     private void verifyEnteredOtp(String enteredOTP) {
         otp = evOTP.getText().toString();
         if (otp.equals("123456")) {
-            userDetailsRepository.createUser(mobileFromSignUp).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("Signup", "Signupsuccess");
-                    NavHostFragment.findNavController(OTPFragment.this)
-                            .navigate(R.id.action_otp_verification_to_register);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d("signupfailed", "Signup failed");
-                }
-            });
+            Log.d("Signup", "Signupsuccess");
+            Bundle OTPBundle = new Bundle();
+            OTPBundle.putString("mobile", mobileFromSignUp);
+            NavHostFragment.findNavController(OTPFragment.this)
+                    .navigate(R.id.action_otp_verification_to_register,OTPBundle);
 
         } else {
             evOTP.setError("Incorrect Pin");

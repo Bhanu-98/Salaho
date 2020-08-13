@@ -1,6 +1,7 @@
 package com.devengers.salaho;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,13 +35,18 @@ public class UserDetailsRepository extends BaseFirestoreRepository {
 
     public Task<Void> registerUserDetails(UserModel user) {
         DocumentReference userDetails = userRef.document(user.getMobile());
-        return userDetails.update(user.getMobile(), user);
+        Log.d("usermodel",user.getMobile());
+        return userDetails.set(user,SetOptions.merge());
+//        return null;
     }
 
 
     public Task<Void> createUser(String mobile) {
         final DocumentReference newUser = userRef.document(mobile);
         final UserModel userModel = new UserModel();
+        DocumentReference users=registerRef.document(mobile);
+        users.set(new HashMap<String,Object>());
+
         return mFirestore.runTransaction(new Transaction.Function<Void>() {
             @Nullable
             @Override

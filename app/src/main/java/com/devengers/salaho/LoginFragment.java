@@ -1,10 +1,12 @@
 package com.devengers.salaho;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -20,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.devengers.salaho.UserDetailsRepository;
@@ -31,6 +34,7 @@ public class LoginFragment extends Fragment {
 
 
     UserDetailsRepository userDetailsRepository;
+    Utils utils;
 
 
     EditText num, password;
@@ -42,13 +46,31 @@ public class LoginFragment extends Fragment {
     }
 
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+
+
         num = (EditText) view.findViewById(R.id.login_phone);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            num.setText(bundle.getString("signUpMobile"));
+        }
         password = (EditText) view.findViewById(R.id.login_password);
         userDetailsRepository = new UserDetailsRepository(getContext());
         prefs = new SharedPreferencesConfiguration(getContext());
@@ -57,10 +79,12 @@ public class LoginFragment extends Fragment {
             NavHostFragment.findNavController(LoginFragment.this)
                     .navigate(R.id.action_login_to_nav_home);
         }
+        utils=new Utils();
 
         view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                utils.hideKeyboard(getActivity());
                 UserAuthentication();
             }
         });
@@ -74,6 +98,8 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
+
 
     private void UserAuthentication() {
         phone = num.getText().toString();
