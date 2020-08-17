@@ -13,7 +13,9 @@ public class BaseFirestoreRepository {
     }
     protected FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
-    protected CollectionReference shopperRef = mFirestore.collection("Users");
+    protected CollectionReference userRef = mFirestore.collection("Test");
+    protected CollectionReference registerRef = mFirestore.collection("NonRegisteredUsers");
+
 
 
 }
