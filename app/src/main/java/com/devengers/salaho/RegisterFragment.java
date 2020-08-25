@@ -3,7 +3,10 @@ package com.devengers.salaho;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -22,6 +25,7 @@ public class RegisterFragment extends Fragment {
     Utils utils;
 
     UserDetailsRepository userDetailsRepository;
+    RegisterViewModel registerViewModel;
 
     String mobilefromOTP;
 
@@ -70,28 +74,48 @@ public class RegisterFragment extends Fragment {
             userModel.setEmail(email.getText().toString());
             userModel.setPass(pass.getText().toString());
             userModel.setMobile(mobilefromOTP);
+            registerViewModel= ViewModelProviders.of(this).get(RegisterViewModel.class);
+            registerViewModel.registerDetails(userModel,mobilefromOTP);
 
-            userDetailsRepository.registerUserDetails(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Bundle bd=new Bundle();
-                    bd.putString("signUpMobile",mobilefromOTP);
-                    Log.d("Register","Success");
-                    NavHostFragment.findNavController(RegisterFragment.this)
-                            .navigate(R.id.action_register_to_login,bd);
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d("register",e.toString());
-                }
-            });
+//            userDetailsRepository.registerUserDetails(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                @Override
+//                public void onSuccess(Void aVoid) {
+//                    Bundle bd=new Bundle();
+//                    bd.putString("signUpMobile",mobilefromOTP);
+//                    Log.d("Register","Success");
+//                    NavHostFragment.findNavController(RegisterFragment.this)
+//                            .navigate(R.id.action_register_to_login,bd);
+//
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Log.d("register",e.toString());
+//                }
+//            });
 
         }
         else
         {
             cpass.setError("Password does not match");
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        registerViewModel= ViewModelProviders.of(this).get(RegisterViewModel.class);
+        registerViewModel.getIsRegistered().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean)
+                {
+                    Bundle bd=new Bundle();
+                    bd.putString("signUpMobile",mobilefromOTP);
+                    NavHostFragment.findNavController(RegisterFragment.this)
+                            .navigate(R.id.action_register_to_login,bd);
+                }
+            }
+        });
     }
 }

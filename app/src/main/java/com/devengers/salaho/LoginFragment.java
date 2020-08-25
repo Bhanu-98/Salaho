@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +43,7 @@ public class LoginFragment extends Fragment {
     EditText num, password;
     String pass, phone;
     SharedPreferencesConfiguration prefs;
+    LoginViewModel loginViewModel;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -106,47 +110,48 @@ public class LoginFragment extends Fragment {
         if (!TextUtils.isEmpty(num.getText())) {
             pass = password.getText().toString();
 
-
-            userDetailsRepository.checkUser(phone).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            userDetailsRepository.getUserDetails(phone).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    UserModel loginModel = documentSnapshot.toObject(UserModel.class);
-                                    Log.d("check", pass);
-                                    Log.d("check", loginModel.getPass());
-                                    if (pass.equals(loginModel.getPass())) {
-                                        prefs.writeLoginStatus(true);
-                                        Log.d("isLoggedin", String.valueOf(prefs.readLoginStatus()));
-
-                                        NavHostFragment.findNavController(LoginFragment.this)
-                                                .navigate(R.id.action_login_to_nav_home);
-                                    } else {
-                                        password.setError("In correct password");
-//                                                 NavHostFragment.findNavController(LoginFragment.this)
-//                                                         .navigate(R.id.action_login_self);
-                                    }
-
-                                    Log.d("password", loginModel != null ? loginModel.getPass() : "null");
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("failed", e.toString());
-                                }
-                            });
-                        } else {
-                            Log.d("error", "user does not exist");
-                            num.setError("User doesn't exist please register first");
-                        }
-                    }
-                }
-            });
+            loginViewModel=ViewModelProviders.of(this).get(LoginViewModel.class);
+            loginViewModel.userAuthentication(phone,pass);
+//            userDetailsRepository.checkUser(phone).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            userDetailsRepository.getUserDetails(phone).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                    UserModel loginModel = documentSnapshot.toObject(UserModel.class);
+//                                    Log.d("check", pass);
+//                                    Log.d("check", loginModel.getPass());
+//                                    if (pass.equals(loginModel.getPass())) {
+//                                        prefs.writeLoginStatus(true);
+//                                        Log.d("isLoggedin", String.valueOf(prefs.readLoginStatus()));
+//
+//                                        NavHostFragment.findNavController(LoginFragment.this)
+//                                                .navigate(R.id.action_login_to_nav_home);
+//                                    } else {
+//                                        password.setError("In correct password");
+////                                                 NavHostFragment.findNavController(LoginFragment.this)
+////                                                         .navigate(R.id.action_login_self);
+//                                    }
+//
+//                                    Log.d("password", loginModel != null ? loginModel.getPass() : "null");
+//
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    Log.d("failed", e.toString());
+//                                }
+//                            });
+//                        } else {
+//                            Log.d("error", "user does not exist");
+//                            num.setError("User doesn't exist please register first");
+//                        }
+//                    }
+//                }
+//            });
 
 
         } else {
@@ -154,5 +159,28 @@ public class LoginFragment extends Fragment {
             Log.d("error", "wrong num");
 
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        loginViewModel.getIsUserValid().observe(,new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean)
+                {
+                    NavHostFragment.findNavController(LoginFragment.this)
+                                                .navigate(R.id.action_login_to_nav_home);
+                }
+                else {
+                    password.setError("In correct password");
+                    NavHostFragment.findNavController(LoginFragment.this)
+                            .navigate(R.id.action_login_self);
+                }
+
+            }
+        });
+
     }
 }
