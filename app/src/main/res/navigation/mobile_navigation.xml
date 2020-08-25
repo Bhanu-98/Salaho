@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_nav_home_to_friends_screen"
+            app:destination="@id/friends_screen" />
     </fragment>
 
     <fragment
@@ -76,6 +79,11 @@
             android:id="@+id/action_register_to_login"
             app:destination="@id/login" />
     </fragment>
+    <fragment
+        android:id="@+id/friends_screen"
+        android:name="com.devengers.salaho.FriendsFragment"
+        android:label="Friends"
+        tools:layout="@layout/fragment_friends"/>
 
 
 

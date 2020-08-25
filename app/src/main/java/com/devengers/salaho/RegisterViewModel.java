@@ -18,6 +18,7 @@ public class RegisterViewModel extends AndroidViewModel {
     public RegisterViewModel(@NonNull Application application) {
         super(application);
         userDetailsRepository=new UserDetailsRepository(application);
+        this.isRegistered=new MutableLiveData<>();
     }
     public MutableLiveData<Boolean> getIsRegistered() {
         return isRegistered;

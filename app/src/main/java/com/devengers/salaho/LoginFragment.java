@@ -165,7 +165,7 @@ public class LoginFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        loginViewModel.getIsUserValid().observe(,new Observer<Boolean>() {
+        loginViewModel.getIsUserValid().observe(getViewLifecycleOwner(),new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean)

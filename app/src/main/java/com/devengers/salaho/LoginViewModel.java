@@ -24,6 +24,7 @@ public class LoginViewModel extends AndroidViewModel {
         super(application);
         userDetailsRepository=new UserDetailsRepository(application);
         prefs=new SharedPreferencesConfiguration(application);
+        this.isUserValid=new MutableLiveData<>();
 
     }
     public MutableLiveData<Boolean> getIsUserValid() {
