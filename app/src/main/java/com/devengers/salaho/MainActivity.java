@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         break;
                     case R.id.nav_join_group:
+                        navController.navigate(R.id.action_nav_home_to_group_fragment);
                         break;
                     case R.id.nav_logout:
                         prefs=new SharedPreferencesConfiguration(getApplicationContext());

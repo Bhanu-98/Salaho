@@ -9,13 +9,16 @@
         android:id="@+id/nav_home"
         android:name="com.devengers.salaho.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_login"
             app:destination="@id/login" />
         <action
             android:id="@+id/action_nav_home_to_friends_screen"
             app:destination="@id/friends_screen" />
+        <action
+            android:id="@+id/action_nav_home_to_group_fragment"
+            app:destination="@id/group_fragment" />
     </fragment>
 
     <fragment
@@ -33,7 +36,7 @@
         android:id="@+id/login"
         android:name="com.devengers.salaho.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_self"
             app:destination="@id/login" />
@@ -41,8 +44,7 @@
             android:id="@+id/action_login_to_nav_home"
             app:destination="@id/nav_home"
             app:popUpTo="@+id/firstFragment"
-            app:popUpToInclusive="true"
-            />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_login_to_signup"
             app:destination="@id/signup" />
@@ -52,8 +54,7 @@
         android:id="@+id/signup"
         android:name="com.devengers.salaho.SignupFragment"
         android:label="SignUp"
-        tools:layout="@layout/fragment_signup"
-        >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signup_to_otp_verification"
             app:destination="@id/otp_verification" />
@@ -62,9 +63,8 @@
     <fragment
         android:id="@+id/otp_verification"
         android:name="com.devengers.salaho.OTPFragment"
-        tools:layout="@layout/fragment_otp"
         android:label="OTP"
-        >
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_otp_verification_to_register"
             app:destination="@id/register" />
@@ -73,8 +73,7 @@
         android:id="@+id/register"
         android:name="com.devengers.salaho.RegisterFragment"
         android:label="Register"
-        tools:layout="@layout/fragment_register"
-        >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/login" />
@@ -83,8 +82,12 @@
         android:id="@+id/friends_screen"
         android:name="com.devengers.salaho.FriendsFragment"
         android:label="Friends"
-        tools:layout="@layout/fragment_friends"/>
-
+        tools:layout="@layout/fragment_friends" />
+    <fragment
+        android:id="@+id/group_fragment"
+        android:name="com.devengers.salaho.ui.groups.GroupFragment"
+        android:label="Groups"
+        tools:layout="@layout/fragment_group" />
 
 
 </navigation>

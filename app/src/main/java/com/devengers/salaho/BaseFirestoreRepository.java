@@ -15,6 +15,7 @@ public class BaseFirestoreRepository {
 
     protected CollectionReference userRef = mFirestore.collection("Test");
     protected CollectionReference registerRef = mFirestore.collection("NonRegisteredUsers");
+    protected CollectionReference groupsRef = mFirestore.collection("Groups");
 
 
 
