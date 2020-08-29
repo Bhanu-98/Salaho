@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_login_to_signup"
             app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_login_to_reset_otp"
+            app:destination="@id/reset_otp" />
     </fragment>
 
     <fragment
@@ -57,6 +60,37 @@
         <action
             android:id="@+id/action_signup_to_otp_verification"
             app:destination="@id/otp_verification" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reset_otp"
+        android:name="com.devengers.salaho.ResetFragment"
+        android:label="ResetOTP"
+        tools:layout="@layout/fragment_reset"
+        >
+        <action
+            android:id="@+id/action_reset_otp_to_recheck_otp"
+            app:destination="@id/recheck_otp" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recheck_otp"
+        android:name="com.devengers.salaho.VerifyOTPFragment"
+        android:label="VerifyOTP"
+        tools:layout="@layout/fragment_verify_otp">
+        <action
+            android:id="@+id/action_recheck_otp_to_reset_password"
+            app:destination="@id/reset_password" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reset_password"
+        android:name="com.devengers.salaho.ResetPasswordFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_reset_password">
+        <action
+            android:id="@+id/action_reset_password_to_login"
+            app:destination="@id/login" />
     </fragment>
 
     <fragment

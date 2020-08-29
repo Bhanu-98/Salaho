@@ -99,6 +99,13 @@ public class LoginFragment extends Fragment {
                         .navigate(R.id.action_login_to_signup);
             }
         });
+        view.findViewById(R.id.forgot_link).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(LoginFragment.this)
+                        .navigate(R.id.action_login_to_reset_otp);
+            }
+        });
 
         return view;
     }
