@@ -5,9 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".FriendsFragment">
 
-    <TextView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_friends"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Friends Fragment" />
+        android:layout_height="wrap_content">
 
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/friend_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/friends_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/friends_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Friends" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/friends_viewPager"
+        android:layout_marginTop="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
