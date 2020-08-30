@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.devengers.salaho.HashPassword;
 import com.devengers.salaho.R;
 import com.devengers.salaho.UserDetailsRepository;
 import com.devengers.salaho.Utils;
@@ -23,9 +24,12 @@ public class ResetPasswordFragment extends Fragment {
     Utils utils;
     String password;
     String mobile;
+    String hashedpassword;
 
     UserDetailsRepository userDetailsRepository;
     ResetPasswordViewModel resetPasswordViewModel;
+    HashPassword hashPassword;
+
     String mobileFromReset;
 
     public ResetPasswordFragment() {
@@ -58,9 +62,9 @@ public class ResetPasswordFragment extends Fragment {
 
         if(pass.getText().toString().equals(cpass.getText().toString())){
             password = pass.getText().toString();
-
+            hashedpassword = hashPassword.getHashedPassword(password);
             resetPasswordViewModel = ViewModelProviders.of(this).get(ResetPasswordViewModel.class);
-            resetPasswordViewModel.resetpassword(password,mobileFromReset);
+            resetPasswordViewModel.resetpassword(hashedpassword,mobileFromReset);
         }
         else
         {
