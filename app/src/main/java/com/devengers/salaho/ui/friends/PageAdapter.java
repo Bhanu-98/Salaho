@@ -1,4 +1,4 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.friends;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.forgotPassword;
 
 import android.os.Bundle;
 
@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.devengers.salaho.R;
+import com.devengers.salaho.SharedPreferencesConfiguration;
 
 public class ResetFragment extends Fragment {
 

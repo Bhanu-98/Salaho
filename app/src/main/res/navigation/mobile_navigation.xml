@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/login"
-        android:name="com.devengers.salaho.LoginFragment"
+        android:name="com.devengers.salaho.ui.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/signup"
-        android:name="com.devengers.salaho.SignupFragment"
+        android:name="com.devengers.salaho.ui.signup.SignupFragment"
         android:label="SignUp"
         tools:layout="@layout/fragment_signup"
         >
@@ -64,7 +64,7 @@
 
     <fragment
         android:id="@+id/reset_otp"
-        android:name="com.devengers.salaho.ResetFragment"
+        android:name="com.devengers.salaho.ui.forgotPassword.ResetFragment"
         android:label="ResetOTP"
         tools:layout="@layout/fragment_reset"
         >
@@ -75,7 +75,7 @@
 
     <fragment
         android:id="@+id/recheck_otp"
-        android:name="com.devengers.salaho.VerifyOTPFragment"
+        android:name="com.devengers.salaho.ui.forgotPassword.VerifyOTPFragment"
         android:label="VerifyOTP"
         tools:layout="@layout/fragment_verify_otp">
         <action
@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/reset_password"
-        android:name="com.devengers.salaho.ResetPasswordFragment"
+        android:name="com.devengers.salaho.ui.forgotPassword.ResetPasswordFragment"
         android:label="Reset Password"
         tools:layout="@layout/fragment_reset_password">
         <action
@@ -95,7 +95,7 @@
 
     <fragment
         android:id="@+id/otp_verification"
-        android:name="com.devengers.salaho.OTPFragment"
+        android:name="com.devengers.salaho.ui.signup.OTPFragment"
         tools:layout="@layout/fragment_otp"
         android:label="OTP"
         >
@@ -105,7 +105,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.devengers.salaho.RegisterFragment"
+        android:name="com.devengers.salaho.ui.signup.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register"
         >
@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/friends_screen"
-        android:name="com.devengers.salaho.FriendsFragment"
+        android:name="com.devengers.salaho.ui.friends.FriendsFragment"
         android:label="Friends"
         tools:layout="@layout/fragment_friends"/>
 

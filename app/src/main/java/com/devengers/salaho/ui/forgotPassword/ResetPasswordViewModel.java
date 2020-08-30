@@ -1,4 +1,4 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.forgotPassword;
 import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.login;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,8 +6,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.navigation.fragment.NavHostFragment;
 
+import com.devengers.salaho.SharedPreferencesConfiguration;
+import com.devengers.salaho.UserDetailsRepository;
+import com.devengers.salaho.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

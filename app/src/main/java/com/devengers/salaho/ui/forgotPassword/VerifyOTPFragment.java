@@ -1,4 +1,4 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.forgotPassword;
 
 import android.os.Bundle;
 
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.devengers.salaho.R;
+import com.devengers.salaho.SharedPreferencesConfiguration;
+import com.devengers.salaho.UserDetailsRepository;
 
 public class VerifyOTPFragment extends Fragment {
 
