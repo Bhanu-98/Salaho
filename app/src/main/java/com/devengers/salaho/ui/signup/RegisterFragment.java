@@ -1,22 +1,22 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.signup;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.devengers.salaho.R;
+import com.devengers.salaho.UserDetailsRepository;
+import com.devengers.salaho.UserModel;
+import com.devengers.salaho.Utils;
 
 
 public class RegisterFragment extends Fragment {
