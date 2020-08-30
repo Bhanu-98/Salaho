@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -57,8 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Selected menu %s", String.valueOf(menuItem.getItemId()));
                 switch (menuItem.getItemId()) {
                     case R.id.nav_add_friend:
+                        navController.navigate(R.id.action_nav_home_to_friends_screen);
+                        break;
                     case R.id.nav_home:
+                        break;
                     case R.id.nav_join_group:
+                        navController.navigate(R.id.action_nav_home_to_group_fragment);
+                        break;
                     case R.id.nav_logout:
                         prefs=new SharedPreferencesConfiguration(getApplicationContext());
                         prefs.writeLoginStatus(false);
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("Logout","Logged Out Sucessfully");
                         startActivity(intent);
+                        break;
 
 //                        NavController navController = Navigation.findNavController(this, R.id.action_nav_home_to_login);
 

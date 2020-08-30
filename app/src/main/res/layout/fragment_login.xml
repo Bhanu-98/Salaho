@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    tools:context=".ui.login.LoginFragment">
 
     <EditText
         android:id="@+id/login_phone"
@@ -27,14 +27,22 @@
         android:layout_marginLeft="150dp"/>
 
     <TextView
+        android:id="@+id/forgot_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="420dp"
+        android:autoLink="web"
+        android:text="Forgot password?" />
+
+    <TextView
         android:id="@+id/register_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
         android:layout_marginLeft="130dp"
-        android:text="New Here? Click me"
+        android:layout_marginTop="460dp"
         android:autoLink="web"
-        />
+        android:text="New Here? Click me" />
 
     <EditText
         android:id="@+id/login_password"

@@ -40,6 +40,13 @@ public class UserDetailsRepository extends BaseFirestoreRepository {
 //        return null;
     }
 
+    public Task<Void> resetUserPassword(String password,String mobileFromReset) {
+        DocumentReference userDetails = userRef.document(mobileFromReset);
+        //Log.d("usermodel",user.getMobile());
+        return userDetails.update("password",password);
+//        return null;
+    }
+
 
     public Task<Void> createUser(String mobile) {
         final DocumentReference newUser = userRef.document(mobile);

@@ -1,8 +1,7 @@
-package com.devengers.salaho;
+package com.devengers.salaho.ui.signup;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -14,10 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.devengers.salaho.R;
+import com.devengers.salaho.SharedPreferencesConfiguration;
+import com.devengers.salaho.UserDetailsRepository;
 
 
 public class OTPFragment extends Fragment {
